@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import logoImg from '../../assets/images/logo.svg';
 import landingImg from '../../assets/images/landing.svg';
@@ -25,24 +26,21 @@ function Landing() {
         />
 
         <div className="buttons-container">
-          <a href="http://aaa" className="study">
+          <Link to="/study" className="study">
             <img src={studyIcon} alt="Study"/>
             Study
-          </a>
+          </Link>
 
-          <a href="http://aaa" className="teach-classes">
+          <Link to="/teach" className="teach-classes">
             <img src={teachIcon} alt="Teach"/>
             Teach
-          </a>
-
+          </Link>
         </div>
         
         <span className="total-connections">
-          200 conections already made
-          <img src={purpleHeartIcon} alt="Purple heart"/>
+          200 conections already made <img src={purpleHeartIcon} alt="Purple heart"/>
         </span>
       </div>
-
     </div>
   )
 }
