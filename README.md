@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="Proffy" title="Proffy" src=".github/proffy_hh.png" width="50%" height="50%" />
+    <img alt="Proffy" title="Proffy" src=".github/logo.svg" />
 </h1>
 
 # nlw02-Proffy
