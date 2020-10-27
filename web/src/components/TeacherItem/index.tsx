@@ -3,31 +3,54 @@ import React from 'react';
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg';
 
 import './styles.css';
+import api from '../../services/api';
 
-function TeacherItem() {
+export interface Teacher {
+    avatar: string;
+    bio: string;
+    cost: number;
+    id: number;
+    name: string;
+    subject: string;
+    whatsapp: string;
+};
+
+interface TeacherListProps {
+  teacherInfo: Teacher;
+};
+
+const TeacherItem: React.FC<TeacherListProps> = ( { teacherInfo } ) => {
+  function createNewConnection() {
+    api.post('connections', {
+      user_id: teacherInfo.id,
+    });
+  }
+
   return (
     <article className="teacher-item">
       <header>
-        <img src="https://avatars0.githubusercontent.com/u/33010639?s=460&u=ccd6bb4d3f9b97a423c7d47ac55a3798164ecc81&v=4" alt="Hercules Hamanaka"/>
+        <img src={teacherInfo.avatar} alt={teacherInfo.name}/>
         <div>
-          <strong>Hercules Hamanaka</strong>
-          <span>Quimica</span>
+          <strong>{teacherInfo.name}</strong>
+          <span>{teacherInfo.subject}</span>
         </div>
       </header>
       <p>
-        Entusiasta das melhores tecnologias de química avançada.
-        <br /><br/>
-        Apaixonado por explodir coisas em laboratório e por mudar a vida das pessoas através da experiência.
+        {teacherInfo.bio}
       </p>
       <footer>
         <p>
           Price/hour
-          <strong>U$ 20.00</strong>
+          <strong>U$ {teacherInfo.cost}</strong>
         </p>
-        <button type="button">
+        <a 
+          target="_blank" 
+          onClick={createNewConnection} 
+          href={`https://wa.me/${teacherInfo.whatsapp}`}
+        >
           <img src={whatsappIcon} alt="Whatsapp"/>
           Contact
-        </button>
+        </a>
       </footer>
     </article>
   );
